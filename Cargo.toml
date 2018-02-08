@@ -1,0 +1,6 @@
+[package]
+name = "skyfall"
+version = "0.1.0"
+authors = ["Jackson Petty <jacksonopetty@gmail.com>"]
+
+[dependencies]
