@@ -1,3 +1,5 @@
+use std;
+
 #[derive(Debug, Deserialize)]
 pub struct Star {
 	pub id: u64,
@@ -48,7 +50,7 @@ pub struct Star {
 	#[serde(rename = "rarad")]
 	pub right_ascension_rad: Option<f64>,
 	#[serde(rename = "decrad")]
-	pub declenation_rad: Option<f64>,
+	pub declination_rad: Option<f64>,
 	#[serde(rename = "pmrarad")]
 	pub proper_motion_right_ascension_rad: Option<f64>,
 	#[serde(rename = "pmdecrad")]
@@ -75,12 +77,28 @@ pub struct Star {
 	pub var_max: Option<f64>,
 }
 
-pub struct StellarPosition {
-	pub altitude: f64,
-	pub azimuth: f64
+pub struct PolarPosition {
+	pub r: f64,
+	pub theta: f64
 }
 
+impl std::fmt::Display for PolarPosition {
+	fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+		write!(f, "{}\t{}", self.r, self.theta)
+	}
+}
+
+#[derive(Debug)]
 pub struct Position {
-	pub latitude: f64,
-	pub longitude: f64
+	pub latitude: f64, // + is North, - is South
+	pub longitude: f64 // + West, - is East
+}
+
+pub struct DateTime {
+	year: i32,
+	month: i32,
+	day: i32,
+	hour: i32,
+	minute: i32,
+	second: i32
 }
