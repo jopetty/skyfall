@@ -14,7 +14,7 @@ pub struct Star {
 	#[serde(rename = "bf")]
 	pub bayer_flamsteed: Option<String>,
 	#[serde(rename = "proper")]
-	pub proper_name: Option<String>,
+	pub name: Option<String>,
 	#[serde(rename = "ra")]
 	pub right_ascension: Option<f64>,
 	#[serde(rename = "dec")]
@@ -77,6 +77,12 @@ pub struct Star {
 	pub var_max: Option<f64>,
 }
 
+impl std::fmt::Display for Star {
+	fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+		write!(f, "{:?}: ({:?}, {:?}) <{:?}>", self.name, self.right_ascension_rad, self.declination_rad, self.magnitude)
+	}
+}
+
 pub struct PolarPosition {
 	pub r: f64,
 	pub theta: f64
@@ -95,10 +101,10 @@ pub struct Position {
 }
 
 pub struct DateTime {
-	year: i32,
-	month: i32,
-	day: i32,
-	hour: i32,
-	minute: i32,
-	second: i32
+	pub year: i32,
+	pub month: i32,
+	pub day: i32,
+	pub hour: i32,
+	pub minute: i32,
+	pub second: i32
 }
